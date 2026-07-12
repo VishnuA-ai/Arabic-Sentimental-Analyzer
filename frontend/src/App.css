@@ -1,0 +1,462 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #a0aec0;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Input Section */
+.input-section {
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.textarea-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.review-textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 20px;
+  font-size: 1.1rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 16px;
+  resize: vertical;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.review-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+}
+
+.review-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.char-counter {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 0.85rem;
+  color: #a0aec0;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.analyze-btn {
+  padding: 14px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.analyze-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.analyze-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.clear-btn {
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  background: transparent;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Loading Animation */
+.loading-container {
+  text-align: center;
+  padding: 40px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 20px;
+  border: 4px solid rgba(102, 126, 234, 0.3);
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-container p {
+  color: #a0aec0;
+  font-size: 1.1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Result Section */
+.result-section {
+  margin-bottom: 40px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 2px solid;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.sentiment-icon {
+  font-size: 3rem;
+  animation: bounce 1s ease-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.sentiment-label {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+/* Confidence Section */
+.confidence-section {
+  margin-bottom: 25px;
+}
+
+.confidence-label {
+  font-size: 0.95rem;
+  color: #a0aec0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.confidence-bar-wrapper {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.confidence-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1s ease-out;
+  animation: progressAnimation 1s ease-out;
+}
+
+@keyframes progressAnimation {
+  from {
+    width: 0%;
+  }
+}
+
+.confidence-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.copy-btn {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid rgba(102, 126, 234, 0.5);
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  color: #667eea;
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+/* Examples Section */
+.examples-section {
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+.examples-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #e2e8f0;
+  text-align: center;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.example-btn {
+  padding: 15px 20px;
+  font-size: 1rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: #e2e8f0;
+  transition: all 0.3s ease;
+  text-align: right;
+  direction: rtl;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.example-btn:hover {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* Model Info */
+.model-info {
+  animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+.model-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #e2e8f0;
+  text-align: center;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.info-value {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .review-textarea {
+    min-height: 150px;
+    font-size: 1rem;
+    padding: 15px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .analyze-btn,
+  .clear-btn {
+    width: 100%;
+  }
+
+  .result-card {
+    padding: 20px;
+  }
+
+  .sentiment-icon {
+    font-size: 2.5rem;
+  }
+
+  .sentiment-label {
+    font-size: 1.5rem;
+  }
+
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .review-textarea {
+    min-height: 120px;
+    font-size: 0.95rem;
+  }
+}
